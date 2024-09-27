@@ -1,4 +1,4 @@
-table, td {
+table, td, tr {
     border: 1px solid black;
     border-collapse: collapse;
     text-align: center;
@@ -14,7 +14,7 @@ table, td {
   tr:nth-child(even) {
     background-color: #272727;
   }
-  
+
   tr:nth-child(odd) {
     background-color: #505050;
   }
@@ -24,8 +24,13 @@ table, td {
     background-color: #cfcfcf;
   }
  
-tr:first-child td {
+table th tr td {
     font-weight: bold;
     background-color: #333;
     color: white;
+  }
+
+  table thead tr th{
+    color: rgb(255, 255, 255);
+    background-color: #333;
   }
