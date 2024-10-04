@@ -33,7 +33,20 @@ tableHeaderRowFirstName.innerHTML = "Keresztnév"
 tableHeaderRowFirstName.colSpan = 2
 
 for(const person of array){
+
     const tr = document.createElement("tr")
+
+    tr.addEventListener('click', function(e){
+        const selectedRow = tableBody.querySelector('.selected')
+        if (selectedRow != undefined)
+        {
+            selectedRow.classList.remove('selected')
+        }
+        console.log('click')
+        e.currentTarget.classList.add('selected')
+        
+    })
+    
     tableBody.appendChild(tr)
     const td = document.createElement("td")
     tr.appendChild(td)
@@ -44,7 +57,7 @@ for(const person of array){
     tr.appendChild(firstname1)
 
     if(person.firstname2 === undefined){
-        firstname1.colSpan  =2 
+        firstname1.colSpan = 2 
     }
     else {
         const firstname2  = document.createElement("td")
@@ -59,3 +72,4 @@ tableHeader.appendChild(tableHeaderRow)
 tableHeaderRow.appendChild(tableHeaderRowLastName)
 tableHeaderRow.appendChild(tableHeaderRowFirstName)
 table.appendChild(tableBody)
+
