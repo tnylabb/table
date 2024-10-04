@@ -6,6 +6,9 @@
 table {
   margin-left: auto;
   margin-right: auto;
+  width: 60%;
+  
+
 }
 
 table, td, tr, th {
@@ -17,7 +20,7 @@ table, td, tr, th {
   }
 
   .roboto-medium {
-    font-family: "Roboto", sans-serif;
+    font-family: "Roboto", sans-serif;  
     font-weight: 500;
     font-style: normal;
   }

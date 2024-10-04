@@ -1,35 +1,48 @@
-const array = [
+let array = [
     {
         firstname1: 'Géza',
         firstname2: 'Ferenc',
-        lastname: 'Kocsis'
+        lastname: 'Kocsis',
+        married: true,
+        pet: 'kutya'
     },
     {
         firstname1: 'Mária',
         firstname2: 'Júlia',
-        lastname: 'Horváth'
+        lastname: 'Horváth',
+        married: false,
+        pet: 'macska'
     },
     {
         firstname1: 'Ferenc',
-        lastname: 'Balogh'
+        lastname: 'Balogh',
+        married: false,
+        pet: 'teknős'
     },
     {
         firstname1: 'Gábor',
         firstname2: 'Attila',
-        lastname: 'Horváth'
+        lastname: 'Horváth',
+        married: true,
+        pet: 'macska'
     },
 ]
+const tableBody = document.createElement("tbody")
 
 const table = document.createElement("table")
 const tableHeader = document.createElement("thead")
 const tableHeaderRow = document.createElement("tr")
+
 const tableHeaderRowLastName = document.createElement("th")
 const tableHeaderRowFirstName = document.createElement("th")
+const tableHeaderRowPet = document.createElement("th")
+const tableHeaderRowMarried = document.createElement("th")
 
-const tableBody = document.createElement("tbody")
 
 tableHeaderRowLastName.innerHTML = "Vezetéknév"
 tableHeaderRowFirstName.innerHTML = "Keresztnév"
+tableHeaderRowPet.innerHTML = "Pet"
+tableHeaderRowMarried.innerHTML = "Married"
 tableHeaderRowFirstName.colSpan = 2
 
 for(const person of array){
@@ -64,6 +77,13 @@ for(const person of array){
         firstname2.innerHTML = person.firstname2
         tr.appendChild(firstname2)
     }
+    const tdPet = document.createElement("td")
+        tdPet.innerHTML = person.pet
+        tr.appendChild(tdPet)
+    
+    const tdMarried = document.createElement("td")
+        tdMarried.innerHTML = person.married ? 'Yes' : 'No'
+        tr.appendChild(tdMarried)
 }
 
 document.body.appendChild(table)
@@ -71,5 +91,7 @@ table.appendChild(tableHeader)
 tableHeader.appendChild(tableHeaderRow)
 tableHeaderRow.appendChild(tableHeaderRowLastName)
 tableHeaderRow.appendChild(tableHeaderRowFirstName)
+tableHeaderRow.appendChild(tableHeaderRowPet)
+tableHeaderRow.appendChild(tableHeaderRowMarried)
 table.appendChild(tableBody)
 
