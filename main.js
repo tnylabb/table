@@ -33,14 +33,20 @@ const tableHeader = document.createElement("thead")
 const tableHeaderRow = document.createElement("tr")
 
 const tableHeaderRowLastName = document.createElement("th")
-const tableHeaderRowFirstName = document.createElement("th")
-const tableHeaderRowPet = document.createElement("th")
-const tableHeaderRowMarried = document.createElement("th")
-
 tableHeaderRowLastName.innerHTML = "Vezetéknév"
+
+createTableCell("td",'Vezetéknév', tableHeaderRow )
+
+
+const tableHeaderRowFirstName = document.createElement("th")
 tableHeaderRowFirstName.innerHTML = "Keresztnév"
+
+const tableHeaderRowPet = document.createElement("th")
 tableHeaderRowPet.innerHTML = "Pet"
+
+const tableHeaderRowMarried = document.createElement("th")
 tableHeaderRowMarried.innerHTML = "Házas"
+
 tableHeaderRowFirstName.colSpan = 2
 
 const form = document.getElementById("form")
@@ -148,4 +154,17 @@ function validatefields(lastnamevali, firstname1vali, petvali) {
     }
 
     return result
+
+    /**
+ *
+ * @param {'td' | 'th'} tagName
+ * @param {string} innerHTML
+ * @param {HTMLTableRowElement} parent
+ * @returns {HTMLTableCellElement}
+ */
+
+function createTableCell(tagName, innerHTML, parent){
+    const cell = document.createElement(tagName);
+    cell.innerHTML = innerHTML;
+    parent.appendChild(cell)
 }
