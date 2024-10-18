@@ -28,7 +28,6 @@ let array = [
     },
 ]
 const tableBody = document.createElement("tbody")
-
 const table = document.createElement("table")
 const tableHeader = document.createElement("thead")
 const tableHeaderRow = document.createElement("tr")
@@ -38,50 +37,43 @@ const tableHeaderRowFirstName = document.createElement("th")
 const tableHeaderRowPet = document.createElement("th")
 const tableHeaderRowMarried = document.createElement("th")
 
-
 tableHeaderRowLastName.innerHTML = "Vezetéknév"
 tableHeaderRowFirstName.innerHTML = "Keresztnév"
 tableHeaderRowPet.innerHTML = "Pet"
-tableHeaderRowMarried.innerHTML = "Married"
+tableHeaderRowMarried.innerHTML = "Házas"
 tableHeaderRowFirstName.colSpan = 2
 
-
-
 const form = document.getElementById("form")
-form.addEventListener('submit', function(e){
-    tableBody.innerHTML=''
-        e.preventDefault()
-        const lastname = document.getElementById('lastname')
-        const firstname1 = document.getElementById('firstname1')
-        const firstname2 = document.getElementById('firstname2')
-        const married = document.getElementById('married')
-        const pet = document.getElementById('pet')
+form.addEventListener('submit', function (e) {
+    tableBody.innerHTML = ''
+    e.preventDefault()
+    const lastname = document.getElementById('lastname')
+    const firstname1 = document.getElementById('firstname1')
+    const firstname2 = document.getElementById('firstname2')
+    const married = document.getElementById('married')
+    const pet = document.getElementById('pet')
 
-        const lastnameValue = lastname.value;
-        const firstname1Value = firstname1.value;
-        let firstname2Value = firstname2.value;
-        const marriedValue = married.checked;
-        const petValue = pet.value;
+    const lastnameValue = lastname.value
+    const firstname1Value = firstname1.value
+    let firstname2Value = firstname2.value
+    const marriedValue = married.checked
+    const petValue = pet.value
 
-        if(ValidateFields(lastname, firstname1, pet)){
-            array.push({
-                lastname: lastnameValue,
-                firstname1: firstname1Value,
-                firstname2: firstname2Value,
-                married: marriedChecked,
-                pet: petValue,
-            })
-        }
+    if (validatefields(lastname, firstname1, pet)) {
+        array.push({
+            lastname: lastnameValue,
+            firstname1: firstname1Value,
+            firstname2: firstname2Value || undefined,
+            married: marriedValue,
+            pet: petValue,
+        })
+    }
 
-        if(firstname2Value === '')
-            {
-                firstname2Value = undefined
-            }
-        RenderTable();
-        console.log(array)
+    RenderTable()
+    console.log(array)
 })
 
-RenderTable();
+RenderTable()
 
 document.body.appendChild(table)
 table.appendChild(tableHeader)
@@ -92,88 +84,68 @@ tableHeaderRow.appendChild(tableHeaderRowPet)
 tableHeaderRow.appendChild(tableHeaderRowMarried)
 table.appendChild(tableBody)
 
-function RenderTable(){
-    for(const person of array){
-        person.lastname
+function RenderTable() {
+    tableBody.innerHTML = ''
+    for (const person of array) {
         const tr = document.createElement("tr")
-    
-        tr.addEventListener('click', function(e){
-            console.log('click') 
+
+        tr.addEventListener('click', function (e) {
             const selectedrow = tableBody.querySelector('.selected')
-            if(selectedrow != undefined)
-            {
+            if (selectedrow) {
                 selectedrow.classList.remove('selected')
             }
             e.currentTarget.classList.add('selected')
         })
-    
-        tr.innerHTML = person.lastname
+
+        const tdLastName = document.createElement("td")
+        tdLastName.innerHTML = person.lastname
+        tr.appendChild(tdLastName)
+
+        const tdFirstName1 = document.createElement("td")
+        tdFirstName1.innerHTML = person.firstname1
+        tr.appendChild(tdFirstName1)
+
+        if (person.firstname2) {
+            const tdFirstName2 = document.createElement("td")
+            tdFirstName2.innerHTML = person.firstname2
+            tr.appendChild(tdFirstName2)
+        } else {
+            tdFirstName1.colSpan = 2
+        }
+
+        const tdMarried = document.createElement("td")
+        tdMarried.innerHTML = person.married ? "Igen" : "Nem"
+        tr.appendChild(tdMarried)
+
+        const tdPet = document.createElement("td")
+        tdPet.innerHTML = person.pet
+        tr.appendChild(tdPet)
+
         tableBody.appendChild(tr)
-    
-        const td = document.createElement("td")
-        td.innerHTML = person.firstname1
-        tr.appendChild(td)
-    
-        
-        if(person.firstname2 === undefined)
-        {
-            td.colSpan = 2
-        }
-    
-        else
-        {
-            const td2 = document.createElement("td")
-            td2.innerHTML = person.firstname2
-            tr.appendChild(td2)
-        }
-    
-        
-        const td3 = document.createElement("td")
-        td3.innerHTML = person.married
-    
-    
-        if(td3.innerHTML == "false")
-        {
-            td3.innerHTML = "Nem"
-            tr.appendChild(td3)
-        }
-        else
-        {
-            td3.innerHTML = "Igen"
-            tr.appendChild(td3)
-        }
-    
-        
-        const td4 = document.createElement("td")
-        td4.innerHTML = person.pet
-        tr.appendChild(td4)   
-    }    
+    }
 }
 
-function validatefields(lastnamevali, firstname1vali, petvali){
+function validatefields(lastnamevali, firstname1vali, petvali) {
     const errormessages = form.querySelectorAll('.error')
-    for(const error of errormessages)
-    {
-        error.innerHTML = ''
-    }
+    errormessages.forEach(error => error.innerHTML = '')
+
     let result = true
-    if(lastnamevali.value === '')
-    {
+
+    if (lastnamevali.value === '') {
         let error = lastnamevali.parentElement.querySelector('.error')
         error.innerHTML = 'Vezetéknév kötelező!'
         result = false
     }
-    else if(firstname1vali.value === '')
-    {
+    if (firstname1vali.value === '') {
         let error = firstname1vali.parentElement.querySelector('.error')
         error.innerHTML = 'Keresztnév kötelező!'
         result = false
     }
-    else if(petvali.value === '')
-    {
+    if (petvali.value === '') {
         let error = petvali.parentElement.querySelector('.error')
-        error.innerHTML = 'Állat kötelező!'
+        error.innerHTML = 'Háziállat kötelező!'
         result = false
     }
+
     return result
-} 
+}
