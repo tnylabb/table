@@ -154,7 +154,7 @@ function validatefields(lastnamevali, firstname1vali, petvali) {
     }
 
     return result
-
+}
     /**
  *
  * @param {'td' | 'th'} tagName
