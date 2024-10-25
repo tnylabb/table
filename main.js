@@ -74,6 +74,8 @@ form.addEventListener('submit', function (e) {
 
     RenderTable()
     console.log(array)
+
+    form.reset()
 })
 
 RenderTable()
