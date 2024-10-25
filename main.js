@@ -35,17 +35,14 @@ const tableHeaderRow = document.createElement("tr")
 const tableHeaderRowLastName = document.createElement("th")
 tableHeaderRowLastName.innerHTML = "Vezetéknév"
 
-createTableCell("td",'Vezetéknév', tableHeaderRow )
-
-
 const tableHeaderRowFirstName = document.createElement("th")
 tableHeaderRowFirstName.innerHTML = "Keresztnév"
 
 const tableHeaderRowPet = document.createElement("th")
 tableHeaderRowPet.innerHTML = "Pet"
-
 const tableHeaderRowMarried = document.createElement("th")
 tableHeaderRowMarried.innerHTML = "Házas"
+
 
 tableHeaderRowFirstName.colSpan = 2
 
@@ -86,8 +83,8 @@ table.appendChild(tableHeader)
 tableHeader.appendChild(tableHeaderRow)
 tableHeaderRow.appendChild(tableHeaderRowLastName)
 tableHeaderRow.appendChild(tableHeaderRowFirstName)
-tableHeaderRow.appendChild(tableHeaderRowPet)
 tableHeaderRow.appendChild(tableHeaderRowMarried)
+tableHeaderRow.appendChild(tableHeaderRowPet)
 table.appendChild(tableBody)
 
 function RenderTable() {
