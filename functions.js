@@ -1,11 +1,10 @@
 /**
-*
+* Creates a new cell, adds innerHTML, appends to parent
 * @param {'td' | 'th'} tagName
 * @param {string} innerHTML
 * @param {HTMLTableRowElement} parent
 * @returns {HTMLTableCellElement}
 */
-
 function createTableCell(tagName, innerHTML, parent){
     const cell = document.createElement(tagName);
     cell.innerHTML = innerHTML;
@@ -14,6 +13,12 @@ function createTableCell(tagName, innerHTML, parent){
     return cell
 }
 
+/**
+ * Creates a new element, adds an id, appends to parent
+ * @param {*} tag 
+ * @param {string} id 
+ * @param {*} parent 
+ */
 function CreateHTMLElement(tag, id, parent)
 {   
     const elem  = document.createElement(tag)
@@ -21,6 +26,12 @@ function CreateHTMLElement(tag, id, parent)
     parent.appendChild(elem)
 }   
 
+/**
+ * Creates a new element (par) from parentid
+ * @param {*} tag 
+ * @param {*} id 
+ * @param {*} parentid 
+ */
 function CreateHTMLElementWithParentID(tag, id, parentid)
 {   
     const par = document.getElementById(parentid)
@@ -31,6 +42,9 @@ function CreateHTMLElementWithParentID(tag, id, parentid)
 
 }
 
+/**
+ * Creates the Table Header
+ */
 function RenderTableHeader(persontr){
     const parent = document.getElementById(persontr)
     createTableCell('th' , 'Vezetéknév', parent)
@@ -40,6 +54,9 @@ function RenderTableHeader(persontr){
     createTableCell('th' , 'Állat', parent)
 }
 
+/**
+ * Creates the table 
+ */
 function RenderTable(personarray) {
     const tableBody = document.getElementById("persontbody")
     tableBody.innerHTML = ''
