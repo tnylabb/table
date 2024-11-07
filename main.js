@@ -47,9 +47,11 @@ RenderTable(array)
  */
 const form = document.getElementById("form")
 form.addEventListener('submit', function (e) {
-    tableBody.innerHTML = ''  // Clears current table content
     e.preventDefault() // Prevents default form submission
-
+    
+    const tableBody = document.getElementById("persontbody");
+    tableBody.innerHTML = ''  // Clears current table content
+    
     // Get input values from form fields
     const lastname = document.getElementById('lastname')
     const firstname1 = document.getElementById('firstname1')
@@ -75,7 +77,7 @@ form.addEventListener('submit', function (e) {
         })
     }
 
-    RenderTable() // Rerender table to include the new entry
+    RenderTable(array) // Rerender table to include the new entry
     console.log(array) // Log updated array to console
     form.reset() // Reset form fields
 })
